@@ -18,7 +18,7 @@ type UpdateTypes int
 //     const chatJoinRequest = update.chat_join_request;
 
 const (
-	Message UpdateTypes = 0
+	Message UpdateTypes = iota
 	EidtMessage
 	ChannelPost
 	EditedChannelPost
