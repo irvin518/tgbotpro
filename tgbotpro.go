@@ -5,6 +5,7 @@ import (
 	updateprocesser "github.com/irvin518/tgbotpro/src/updateProcesser"
 	updatetypes "github.com/irvin518/tgbotpro/src/updateTypes"
 	updateshandler "github.com/irvin518/tgbotpro/src/updatesHandler"
+	"github.com/irvin518/tgbotpro/src/utils"
 )
 
 type TgbotPro struct {
@@ -19,7 +20,8 @@ type BotUpdate interface {
 	AddProcesser(t updatetypes.UpdateTypes, processer updateprocesser.UpdateProcesser)
 }
 
-func (m *TgbotPro) Start() error {
+func (m *TgbotPro) Start(logInfo utils.LogInfoFunc, logError utils.LogErrorFunc) error {
+	utils.Log().Init(logInfo, logError)
 	return m.updateImpl.Start(m.shutdown)
 }
 
