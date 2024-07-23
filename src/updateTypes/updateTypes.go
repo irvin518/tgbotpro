@@ -32,4 +32,7 @@ const (
 	ChatMember
 	MyChatMember
 	ChatJoinRequest
+
+	ChatBoost
+	RemoveChatBoost
 )

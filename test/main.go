@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	tgbotapi "github.com/irvin518/telegram-bot-api/v5"
 	"github.com/irvin518/tgbotpro"
 )
 

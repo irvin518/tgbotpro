@@ -3,7 +3,7 @@ package updateprocesser
 import (
 	"fmt"
 
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	tgbotapi "github.com/irvin518/telegram-bot-api/v5"
 )
 
 func checkMessage[T any](message any) error {
@@ -272,6 +272,58 @@ func (m *ChatJoinRequestProcesserAdpter) Process(msg any) error {
 	}
 	if m.processer != nil {
 		m.processer.Process(msg.(*tgbotapi.ChatJoinRequest))
+	}
+	return nil
+}
+
+// chart_boost
+type ChatBoostProcesser interface {
+	Process(*tgbotapi.ChatBoostUpdated)
+}
+
+type ChatBoostProcesserAdpter struct {
+	processer ChatBoostProcesser
+}
+
+func NewChatBoostProcesserAdpter(processer ChatBoostProcesser) *ChatBoostProcesserAdpter {
+	return &ChatBoostProcesserAdpter{
+		processer: processer,
+	}
+}
+
+func (m *ChatBoostProcesserAdpter) Process(msg any) error {
+	err := checkMessage[*tgbotapi.ChatJoinRequest](msg)
+	if err != nil {
+		return err
+	}
+	if m.processer != nil {
+		m.processer.Process(msg.(*tgbotapi.ChatBoostUpdated))
+	}
+	return nil
+}
+
+// remove_chart_boost
+type RemoveChatBoostProcesser interface {
+	Process(*tgbotapi.ChatBoostRemoved)
+}
+
+type RemoveChatBoostProcesserAdpter struct {
+	processer RemoveChatBoostProcesser
+}
+
+func NewRemoveChatBoostProcesserAdpter(processer RemoveChatBoostProcesser) *RemoveChatBoostProcesserAdpter {
+	return &RemoveChatBoostProcesserAdpter{
+		processer: processer,
+	}
+}
+
+func (m *RemoveChatBoostProcesserAdpter) Process(msg any) error {
+	err := checkMessage[*tgbotapi.ChatJoinRequest](msg)
+	if err != nil {
+		return err
+	}
+	if m.processer != nil {
+		m.processer.Process(msg.(*tgbotapi.ChatBoostRemoved))
 	}
 	return nil
 }

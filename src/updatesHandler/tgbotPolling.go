@@ -1,7 +1,7 @@
 package updateshandler
 
 import (
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	tgbotapi "github.com/irvin518/telegram-bot-api/v5"
 	updateprocesser "github.com/irvin518/tgbotpro/src/updateProcesser"
 	updatetypes "github.com/irvin518/tgbotpro/src/updateTypes"
 )

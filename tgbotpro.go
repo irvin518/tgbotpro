@@ -1,7 +1,7 @@
 package tgbotpro
 
 import (
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	tgbotapi "github.com/irvin518/telegram-bot-api/v5"
 	updateprocesser "github.com/irvin518/tgbotpro/src/updateProcesser"
 	updatetypes "github.com/irvin518/tgbotpro/src/updateTypes"
 	updateshandler "github.com/irvin518/tgbotpro/src/updatesHandler"
@@ -87,6 +87,14 @@ func (m *TgbotPro) OnMyChatMemberUpdated(processer updateprocesser.ChatMemberUpd
 
 func (m *TgbotPro) OnChatJoinRequest(processer updateprocesser.ChatJoinRequestProcesser) {
 	m.updateImpl.AddProcesser(updatetypes.ChatJoinRequest, updateprocesser.NewChatJoinRequestProcesserAdpter(processer))
+}
+
+func (m *TgbotPro) OnChatBoost(processer updateprocesser.ChatBoostProcesser) {
+	m.updateImpl.AddProcesser(updatetypes.MyChatMember, updateprocesser.NewChatBoostProcesserAdpter(processer))
+}
+
+func (m *TgbotPro) OnRemoveChatBoost(processer updateprocesser.RemoveChatBoostProcesser) {
+	m.updateImpl.AddProcesser(updatetypes.ChatJoinRequest, updateprocesser.NewRemoveChatBoostProcesserAdpter(processer))
 }
 
 func NewTgbotPolling(botToken string) (*TgbotPro, error) {

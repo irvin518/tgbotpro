@@ -3,7 +3,7 @@ package updateshandler
 import (
 	"encoding/json"
 
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	tgbotapi "github.com/irvin518/telegram-bot-api/v5"
 	updateprocesser "github.com/irvin518/tgbotpro/src/updateProcesser"
 	updatetypes "github.com/irvin518/tgbotpro/src/updateTypes"
 	"github.com/irvin518/tgbotpro/src/utils"
@@ -64,7 +64,14 @@ func (m *UpdatesHandler) processUpdates(update tgbotapi.Update) {
 	} else if update.ChatJoinRequest != nil {
 		messageType = updatetypes.ChatJoinRequest
 		message = update.ChatJoinRequest
+	} else if update.ChatBoost != nil {
+		messageType = updatetypes.ChatBoost
+		message = update.ChatBoost
+	} else if update.RemovedChatBoost != nil {
+		messageType = updatetypes.RemoveChatBoost
+		message = update.RemovedChatBoost
 	}
+
 	if disposer, ok := m.updateDisposer[messageType]; ok {
 		for _, processer := range disposer {
 			err := processer.Process(message)
