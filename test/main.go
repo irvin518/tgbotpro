@@ -11,7 +11,7 @@ import (
 type MessageDisposser struct {
 }
 
-func (m *MessageDisposser) Process(msg *tgbotapi.Message) {
+func (m *MessageDisposser) Process(api *tgbotapi.BotAPI, msg *tgbotapi.Message) {
 
 	data, err := json.Marshal(msg)
 	if err != nil {

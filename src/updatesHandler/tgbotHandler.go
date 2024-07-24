@@ -19,7 +19,7 @@ func NewUpdatesHandler() *UpdatesHandler {
 	}
 }
 
-func (m *UpdatesHandler) processUpdates(update tgbotapi.Update) {
+func (m *UpdatesHandler) processUpdates(bot *tgbotapi.BotAPI, update tgbotapi.Update) {
 	var messageType updatetypes.UpdateTypes = -1
 	var message any
 	if update.Message != nil {
@@ -74,7 +74,7 @@ func (m *UpdatesHandler) processUpdates(update tgbotapi.Update) {
 
 	if disposer, ok := m.updateDisposer[messageType]; ok {
 		for _, processer := range disposer {
-			err := processer.Process(message)
+			err := processer.Process(bot, message)
 			if err != nil {
 				msg, _ := json.Marshal(update)
 				utils.Log().Error("process update message %s error %s", msg, err)

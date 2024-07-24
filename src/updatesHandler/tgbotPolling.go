@@ -34,7 +34,7 @@ func (m *TgbotPolling) Start(closeChan chan any) error {
 			}
 			select {
 			case update := <-updateChan:
-				m.handler.processUpdates(update)
+				m.handler.processUpdates(m.botApi, update)
 			default:
 			}
 
