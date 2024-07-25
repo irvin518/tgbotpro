@@ -11,6 +11,10 @@ type TgbotPolling struct {
 	handler *UpdatesHandler
 }
 
+const (
+	Limits = 10
+)
+
 func NewTgbotPolling(bot *tgbotapi.BotAPI) *TgbotPolling {
 	return &TgbotPolling{
 		botApi:  bot,
@@ -20,27 +24,27 @@ func NewTgbotPolling(bot *tgbotapi.BotAPI) *TgbotPolling {
 
 func (m *TgbotPolling) Start(closeChan chan any) error {
 	updateChan := m.botApi.GetUpdatesChan(tgbotapi.UpdateConfig{
-		Limit:   1,
+		Limit:   Limits,
 		Timeout: 0,
 		Offset:  0,
 	})
+	for i := 0; i < Limits; i++ {
+		go func() {
+			for {
+				select {
+				case <-closeChan:
+					return
+				default:
+				}
+				select {
+				case update := <-updateChan:
+					m.handler.processUpdates(m.botApi, update)
+				default:
+				}
 
-	go func() {
-		for {
-			select {
-			case <-closeChan:
-				return
-			default:
 			}
-			select {
-			case update := <-updateChan:
-				m.handler.processUpdates(m.botApi, update)
-			default:
-			}
-
-		}
-	}()
-
+		}()
+	}
 	return nil
 }
 
