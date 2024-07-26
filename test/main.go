@@ -29,7 +29,7 @@ func main() {
 
 	bot.OnMessage(new(MessageDisposser))
 
-	bot.Start(nil, nil)
+	bot.Start(10, nil, nil)
 
 	defer func() {
 		bot.Stop()

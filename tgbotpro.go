@@ -15,14 +15,14 @@ type TgbotPro struct {
 }
 
 type BotUpdate interface {
-	Start(closeChan chan any) error
+	Start(msgLimit int, closeChan chan any) error
 
 	AddProcesser(t updatetypes.UpdateTypes, processer updateprocesser.UpdateProcesser)
 }
 
-func (m *TgbotPro) Start(logInfo utils.LogInfoFunc, logError utils.LogErrorFunc) error {
+func (m *TgbotPro) Start(msgLimit int, logInfo utils.LogInfoFunc, logError utils.LogErrorFunc) error {
 	utils.Log().Init(logInfo, logError)
-	return m.updateImpl.Start(m.shutdown)
+	return m.updateImpl.Start(msgLimit, m.shutdown)
 }
 
 func (m *TgbotPro) Stop() {
