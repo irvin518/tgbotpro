@@ -1,4 +1,2 @@
-github.com/irvin518/telegram-bot-api/v5 v5.0.0-20240723064526-cf6aefaf160b h1:Orxyg9Ibxe/y1T/iXHu0l/6lFGHgzszl7s9k8D0ALwY=
-github.com/irvin518/telegram-bot-api/v5 v5.0.0-20240723064526-cf6aefaf160b/go.mod h1:KRSfUhnFEQhUZjQbvKkl57vLn7NOJUfJ+6BXzMlLYQA=
-github.com/irvin518/telegram-bot-api/v5 v5.3.0 h1:H1kibrXz3LKeHqXa0dtqjf04VUtxIeh+GtThdyygVAA=
-github.com/irvin518/telegram-bot-api/v5 v5.3.0/go.mod h1:KRSfUhnFEQhUZjQbvKkl57vLn7NOJUfJ+6BXzMlLYQA=
+github.com/irvin518/telegram-bot-api/v5 v5.3.1 h1:xtBDBPa7RMvinIONtZGINEEzFQyb0wjtP66yTI/84w0=
+github.com/irvin518/telegram-bot-api/v5 v5.3.1/go.mod h1:KRSfUhnFEQhUZjQbvKkl57vLn7NOJUfJ+6BXzMlLYQA=
