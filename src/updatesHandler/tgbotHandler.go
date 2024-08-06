@@ -76,7 +76,7 @@ func (m *UpdatesHandler) processUpdates(bot *tgbotapi.BotAPI, update tgbotapi.Up
 	if disposer, ok := m.updateDisposer[messageType]; ok {
 		for _, processer := range disposer {
 			err := processer.Process(bot, message)
-			utils.Log().Info("process %+v", message)
+			utils.Log().Info("process %+v", update.UpdateID)
 			if err != nil {
 				msg, _ := json.Marshal(update)
 				utils.Log().Error("process update message %s error %s", msg, err)
