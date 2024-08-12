@@ -1,8 +1,6 @@
 package updateshandler
 
 import (
-	"time"
-
 	tgbotapi "github.com/irvin518/telegram-bot-api/v5"
 	updateprocesser "github.com/irvin518/tgbotpro/src/updateProcesser"
 	updatetypes "github.com/irvin518/tgbotpro/src/updateTypes"
@@ -34,13 +32,8 @@ func (m *TgbotPolling) Start(msgLimit int, closeChan chan any) error {
 					return
 				default:
 				}
-				select {
-				case update := <-updateChan:
-					m.handler.processUpdates(m.botApi, update)
-				default:
-					time.Sleep(time.Millisecond)
-				}
-
+				update := <-updateChan
+				m.handler.processUpdates(m.botApi, update)
 			}
 		}()
 	}
