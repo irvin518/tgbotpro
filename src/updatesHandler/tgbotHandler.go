@@ -81,7 +81,7 @@ func (m *UpdatesHandler) processUpdates(bot *tgbotapi.BotAPI, update tgbotapi.Up
 			}
 		}
 	} else {
-		utils.Log().Error("mis dispose update %+v , message type %d message %+v", update, messageType, message)
+		//utils.Log().Error("mis dispose update %+v , message type %d message %+v", update, messageType, message)
 	}
 }
 
